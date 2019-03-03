@@ -1,0 +1,10 @@
+#define CEX_VERSION "1.0.0"
+#define CEX_VERSION_MAJOR 1
+#define CEX_VERSION_MINOR 0
+#define CEX_VERSION_PATCH 0
+
+#undef CEX_WITH_SSL
+#undef CEX_WITH_ZLIB
+
+#define CEX_WITH_SSL
+#define CEX_WITH_ZLIB
