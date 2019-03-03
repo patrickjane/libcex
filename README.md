@@ -47,6 +47,7 @@ Unpacking objects: 100% (4/4), done.
 $ mkdir build
 $ cd build
 $ cmake ..
+$ make
 ```
 
 If cmake cannot find your OpenSSL installation, or you've installed in a non-standard location, you might want to add `-DOPENSSL_ROOT_DIR=/path/to/ssl` to the cmake call.
