@@ -74,9 +74,13 @@ Test project /Users/patrickjane/Development/libcex/build
 
 Total Test time (real) =   0.41 sec
 ```
+# API
+For a full API documentation, visit the doxygen site at: https://patrickjane.github.io/libcex/index.html
 
 # Usage
 ## Server
+[cex::Server API docs ↗](https://patrickjane.github.io/libcex/classcex_1_1_server.html)    
+
 The `cex::Server` class provides the HTTP/HTTPS listener and actually processes the request received by clients.
 A server can be created with default options (see API docs) or concrete options:
 
@@ -101,6 +105,8 @@ Supplying `true` to the last parameter starts the listener/eventloop within the 
 **Note**: The background thread only servers for the eventloop. The actual request processing might use additional/more threads as given by the `threadCount` config option (default: 4).
 
 ## Middlewares
+[cex::Middleware API docs ↗](https://patrickjane.github.io/libcex/classcex_1_1_middleware.html)    
+
 The `cex::Server` class also provides the interface to attach middleware functions.
 Each middleware function will receive the `cex::Request` and `cex::Response` objects, which allow to interact with the currently receiced request as well as construct responses which will be sent back to the client.
 
@@ -154,12 +160,14 @@ Execution of middlewares stops once:
 ### Built-in middlewares
 `libcex` already provides a few predefined middleware functions ready to use:
 
-- `cex::filesystem` middleware for accesing static files on the filesystem
-- `cex::security` middleware that sets a number of security related HTTP headers (XSS, X-Frame, ...)
-- `cex::basicAuth` middleware that extracts HTTP basic auth information from the request
-- `cex::sessionHandler` middleware that adds/retrieves session cookies from/to requests/responses
+- `cex::filesystem` middleware for accesing static files on the filesystem [(API docs ↗)](https://patrickjane.github.io/libcex/filesystem_8hpp.html)
+- `cex::security` middleware that sets a number of security related HTTP headers [(API docs ↗)](https://patrickjane.github.io/libcex/security_8hpp.html)
+- `cex::basicAuth` middleware that extracts HTTP basic auth information from the request [(API docs ↗)](https://patrickjane.github.io/libcex/basicauth_8hpp.html)
+- `cex::sessionHandler` middleware that adds/retrieves session cookies from/to requests/responses [(API docs ↗)](https://patrickjane.github.io/libcex/session_8hpp.html)
 
 ## Requests
+[cex::Request API docs ↗](https://patrickjane.github.io/libcex/classcex_1_1_request.html)    
+
 The `cex::Request` class provides access to the request contents (URL, headers, parameters, body, ...) as sent by the client. An instance of `cex::Request` represents a single HTTP request which shall be handled by the application. In terms of HTTP communication, `cex::Request` is *read only*, that is, it cannot be used to send a response. For this, `cex::Response` is used.
 
 Example:
@@ -194,6 +202,8 @@ app.use("/content", [](cex::Request* req, cex::Response* res, std::function<void
 To allow middlewares to transfer information between them, the `cex::Request` class contains a property list. For example, the `cex::basicAuth` middleware stored the username and password supplied by the client in the properties `basicUsername` and `basicPassword`.
 
 ## Response
+[cex::Response API docs ↗](https://patrickjane.github.io/libcex/classcex_1_1_response.html)    
+
 The `cex::Response` class provides the interface for sending responses back to the client. This includes the HTTP Code, payloads as well as header parameters. 
 The most simple response might just include the HTTP code:
 
