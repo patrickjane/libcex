@@ -8,7 +8,7 @@ Focuses on the concept of middleware functions to provide an extremely easy to u
 
 The most basic example might be as simple as:
 
-```
+```cpp
 #include <cex.hpp>
 
 int main()
@@ -84,7 +84,7 @@ For a full API documentation, visit the doxygen site at: https://patrickjane.git
 The `cex::Server` class provides the HTTP/HTTPS listener and actually processes the request received by clients.
 A server can be created with default options (see API docs) or concrete options:
 
-```
+```cpp
 cex::Server app;
 
 // or
@@ -95,7 +95,7 @@ cex::Server app(&cfg);
 
 The listener is started once the `listen` method is called:
 
-```
+```cpp
 app.listen(true);
 ```
 
@@ -114,7 +114,7 @@ Middleware functions can be attached for a certain HTTP method, a certain URL, o
 
 Example:
 
-```
+```cpp
 // global middleware matching all incoming requests
 
 app.use([](cex::Request* req, cex::Response* res, std::function<void()> next) { ... });
@@ -172,7 +172,7 @@ The `cex::Request` class provides access to the request contents (URL, headers, 
 
 Example:
 
-```
+```cpp
 app.use("/content", [](cex::Request* req, cex::Response* res, std::function<void()> next)
 {
    printf("Protocol: [%d], Method [%d], port [%d], host [%s], url [%s], path [%s], file [%s], user [%s], password [%s]\n",
@@ -207,7 +207,7 @@ To allow middlewares to transfer information between them, the `cex::Request` cl
 The `cex::Response` class provides the interface for sending responses back to the client. This includes the HTTP Code, payloads as well as header parameters. 
 The most simple response might just include the HTTP code:
 
-```
+```cpp
 app.use("/content", [](cex::Request* req, cex::Response* res, std::function<void()> next)
 {
    res->end(200); // HTTP 200 OK
@@ -216,13 +216,13 @@ app.use("/content", [](cex::Request* req, cex::Response* res, std::function<void
 
 The response class also allows to set headers:
 
-```
+```cpp
    res->set("Content-Type", "text/plain");
 ```
 
 ... or send a payload:
 
-```
+```cpp
    res->end("Hello world :)", 200)
 ```
 
@@ -234,7 +234,7 @@ Note that `libcex` does not buffer incoming data. It is up to the application to
 
 The `cex::Server` class provides an interface to attach upload functions:
 
-```
+```cpp
 app.uploads("/uploads", [&uploadBuffer](cex::Request* req, const char* data, size_t len)
 {
    int fd= -1;
@@ -255,7 +255,7 @@ app.uploads("/uploads", [&uploadBuffer](cex::Request* req, const char* data, siz
 
 don't forget to close the file descriptor:
 
-```
+```cpp
 app.post([](cex::Request* req, cex::Response* res, std::function<void()> next)
 {
    if (req->properties.has("uploadFileHandle"))
@@ -274,7 +274,7 @@ app.post([](cex::Request* req, cex::Response* res, std::function<void()> next)
 In case a response shall contain a large payload, using `cex::Response::end` would lead to the entire response beeing kept in memory, which might be undesirable.     
 To solve this issue, `libcex` provides a streaming API for sending responses: 
 
-```
+```cpp
 app.get("/myfile", [](cex::Request* req, cex::Response* res, std::function<void()> next)
 {
    std::ifstream file;
