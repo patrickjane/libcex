@@ -1,0 +1,32 @@
+language: cpp
+env:
+  global:
+    - COMPILER="CC=gcc-7 && CXX=g++-7"
+
+matrix:
+  include:
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-7
+            - libevent-dev
+            - libssl-dev
+            - zlib1g-dev
+            - cmake
+branches:
+  only:
+  - master
+
+before_install:
+  - eval "${COMPILER}"
+  - git clone https://github.com/criticalstack/libevhtp.git libevhtp
+  - pushd libevhtp/build && cmake .. && make && sudo make install && popd
+
+script:
+  - mkdir -p build
+  - cd build
+  - cmake ..
+  - make && ctest --verbose

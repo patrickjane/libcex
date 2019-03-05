@@ -20,6 +20,7 @@
 
 #include <thread>
 #include <condition_variable>
+#include <functional>
 #include <mutex>
 #include <string>
 #include <vector>
