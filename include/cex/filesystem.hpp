@@ -57,7 +57,7 @@ namespace cex
 struct FilesystemOptions
 {
    /*! \brief Constructs a new options object with defaultEncoding `utf-8` and empty rootPath*/
-   FilesystemOptions() { defaultEncoding= "utf-8"; }
+   FilesystemOptions() : defaultEncoding("utf-8") {}
 
    std::string rootPath;         /*!< \brief Specifies the root-path on the local filesystem
 

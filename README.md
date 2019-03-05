@@ -1,5 +1,6 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://travis-ci.org/patrickjane/libcex.svg?branch=master)](https://travis-ci.org/patrickjane/libcex)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8b21dce6d8e846eb9ad5b0dffe1eba10)](https://www.codacy.com/app/patrickjane/libcex?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=patrickjane/libcex&amp;utm_campaign=Badge_Grade)
 
 # libcex
 ## Overview

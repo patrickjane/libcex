@@ -109,8 +109,6 @@ int Response::end(int status)
 
 int Response::stream(int status, std::istream* stream)
 {
-   size_t bytesRead= -1;
-   char ioBuffer[IO_BUFFER_SIZE];
    evbuffer* sendBuffer;
 
    if (!stream || !stream->good())
@@ -143,6 +141,9 @@ int Response::stream(int status, std::istream* stream)
    else
 #endif
    {
+      size_t bytesRead= -1;
+      char ioBuffer[IO_BUFFER_SIZE];
+
       evhtp_send_reply_chunk_start(req, EVHTP_RES_OK);
 
       while (!stream->eof() && stream->good())
@@ -150,7 +151,7 @@ int Response::stream(int status, std::istream* stream)
          stream->read(ioBuffer, IO_BUFFER_SIZE);
          bytesRead= stream->gcount();
 
-         if (bytesRead <= 0)
+         if (bytesRead == 0)
             break;
 
          evbuffer_add(sendBuffer, ioBuffer, bytesRead);

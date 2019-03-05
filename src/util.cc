@@ -112,8 +112,6 @@ int compress(const char* src, size_t srcLen, struct evbuffer* dest, CompressionM
    size_t bytesRead= 0;
    char out[IO_BUFFER_SIZE];
 
-   int windowBits = 15;
-   int GZIP_ENCODING = 16;
    z_stream strm;
 
    strm.zalloc = Z_NULL;
@@ -121,7 +119,12 @@ int compress(const char* src, size_t srcLen, struct evbuffer* dest, CompressionM
    strm.opaque = Z_NULL;
 
    if (compMode == cmGZip)
+   {
+      int windowBits = 15;
+      int GZIP_ENCODING = 16;
+
       res = deflateInit2(&strm, Z_DEFAULT_COMPRESSION, Z_DEFLATED, windowBits | GZIP_ENCODING, 8, Z_DEFAULT_STRATEGY);
+   }
    else
       res = deflateInit(&strm, Z_DEFAULT_COMPRESSION);
 

@@ -38,15 +38,15 @@ class Property
    public:
 
       /*! \brief Constructs a new property with a string value */
-      Property(std::string value)   : stringValue(value), longValue(0), doubleValue(0), ptrValue(0) {}
+      explicit Property(const std::string& value) : stringValue(value), longValue(0), doubleValue(0), ptrValue(0) {}
       /*! \brief Constructs a new property with a string value (moving the value) */
-      Property(std::string&& value) : stringValue(value), longValue(0), doubleValue(0), ptrValue(0) {}
+      explicit Property(std::string&& value)      : stringValue(value), longValue(0), doubleValue(0), ptrValue(0) {}
       /*! \brief Constructs a new property with a long value */
-      Property(long value)          : longValue(value), doubleValue(0), ptrValue(0) {}
+      explicit Property(long value)               : longValue(value), doubleValue(0), ptrValue(0) {}
       /*! \brief Constructs a new property with a double value */
-      Property(double value)        : longValue(0), doubleValue(value), ptrValue(0) {}
+      explicit Property(double value)             : longValue(0), doubleValue(value), ptrValue(0) {}
       /*! \brief Constructs a new property with a void* value */
-      Property(void* value)         : longValue(0), doubleValue(0), ptrValue(value) {}
+      explicit Property(void* value)              : longValue(0), doubleValue(0), ptrValue(value) {}
 
       /*! \brief Retrieves the string value of the property. If no string value was set, returns an empty string object */
       std::string& getStringValue()  { return stringValue; }

@@ -181,7 +181,7 @@ class Request
       /*! \brief Constructs a new Response object 
         \param req The underlying `libevhtp` request object 
        */
-      Request(evhtp_request* req);
+      explicit Request(evhtp_request* req);
 
      // base request info
 
@@ -300,7 +300,7 @@ class Response
       /*! \brief Constructs a new `Response` object 
         \param req The underlying `libevhtp` request object 
        */
-      Response(evhtp_request* req);
+      explicit Response(evhtp_request* req);
 
       /*! \brief Sets a HTTP header to a given value
         \param name Name of the HTTP header
@@ -486,7 +486,7 @@ class Server
       /*! \brief Constructs a new server with the given config.
         \param config The Config object which defines the server options/configuration
        */
-      Server(Config& config);
+      explicit Server(Config& config);
       virtual ~Server();
 
       // server

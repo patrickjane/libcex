@@ -501,7 +501,7 @@ evhtp_res Server::handleBody(evhtp_request_t* req, struct evbuffer* buf, void* a
       {
          if (!((*it).get()->match(ctx->req.get())))
          {
-            it++;
+            ++it;
             continue;
          }
 
@@ -607,7 +607,7 @@ void Server::handleRequest(evhtp_request* req, void* arg)
 
    next = [&next, &ctx, &it]()
    {
-      it++;
+      ++it;
 
       if (it != ctx->serv->middleWares.end())
       {

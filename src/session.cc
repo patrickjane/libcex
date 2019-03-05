@@ -44,7 +44,7 @@ MiddlewareFunction sessionHandler(std::shared_ptr<SessionOptions> opts)
 
 	 std::vector<std::string> splitted(splitString(cookie, ';'));
 
-	 for (std::vector<std::string>::iterator it = splitted.begin(); it != splitted.end(); it++)
+	 for (std::vector<std::string>::iterator it = splitted.begin(); it != splitted.end(); ++it)
 	 {
 	    std::string cookieName, cookieValue;
 	    std::vector<std::string> cookieContents(splitString((*it).c_str(), '='));
@@ -55,7 +55,7 @@ MiddlewareFunction sessionHandler(std::shared_ptr<SessionOptions> opts)
 	    if (cookieContents.size() && cookieIt != cookieContents.end()) 
 	    {
 	       cookieName= *cookieIt;
-	       cookieIt++;
+	       ++cookieIt;
 
 	       if (cookieIt != cookieContents.end())
 	       {
@@ -89,12 +89,12 @@ MiddlewareFunction sessionHandler(std::shared_ptr<SessionOptions> opts)
 	 {
             time_t expDate = time(0) + theOpts->expires;
 	    struct tm* timeinfo;
-	    char buffer[80];
 
 	    timeinfo= localtime(&expDate);
 
             if (timeinfo)
             {
+               char buffer[80];
                strftime(buffer, 80 , "%a, %d %h %Y %T %Z", timeinfo);
 
                setCookie += "; Expires=";

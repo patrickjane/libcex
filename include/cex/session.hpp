@@ -63,7 +63,7 @@ Set-Cookie: sessionID=D7D1AB0E9B41E9291933C28DB7110A8B6C01B47D13EF82D712676E12AF
 
 struct SessionOptions
 {
-   SessionOptions() { name= "sessionId"; secure= false; httpOnly= true; secure= sameSiteStrict= sameSiteLax= false; expires= 0; maxAge= 0; }
+   SessionOptions() : name("sessionId"), secure(false), httpOnly(true), sameSiteStrict(false), sameSiteLax(false), expires(0), maxAge(0) {}
 
    /*! \brief Sets the expires cookie option. Must be a relative time offset in seconds. */
    time_t expires;

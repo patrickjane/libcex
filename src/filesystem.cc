@@ -26,7 +26,7 @@ namespace cex
 
 static struct FilesystemOptions defaultOptions;
 
-MiddlewareFunction filesystem(std::string aPath)
+MiddlewareFunction filesystem(const std::string& aPath)
 {
    std::shared_ptr<FilesystemOptions> opts(new FilesystemOptions());
    opts.get()->rootPath= aPath;
