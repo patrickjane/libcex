@@ -1,4 +1,5 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+![GitHub release](https://img.shields.io/github/release/patrickjane/libcex.svg)
 [![Build Status](https://travis-ci.org/patrickjane/libcex.svg?branch=master)](https://travis-ci.org/patrickjane/libcex)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8b21dce6d8e846eb9ad5b0dffe1eba10)](https://www.codacy.com/app/patrickjane/libcex?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=patrickjane/libcex&amp;utm_campaign=Badge_Grade)
 
@@ -162,10 +163,10 @@ Execution of middlewares stops once:
 ### Built-in middlewares
 `libcex` already provides a few predefined middleware functions ready to use:
 
-- `cex::filesystem` middleware for accesing static files on the filesystem [(API docs ↗)](https://patrickjane.github.io/libcex/filesystem_8hpp.html)
-- `cex::security` middleware that sets a number of security related HTTP headers [(API docs ↗)](https://patrickjane.github.io/libcex/security_8hpp.html)
+- `cex::filesystem` middleware for accesing static files on the filesystem [(API docs ↗)](https://patrickjane.github.io/libcex/filesystem_8hpp.html) [(Options ↗)](https://patrickjane.github.io/libcex/structcex_1_1_filesystem_options.html)
+- `cex::security` middleware that sets a number of security related HTTP headers [(API docs ↗)](https://patrickjane.github.io/libcex/security_8hpp.html) [(Options ↗)](https://patrickjane.github.io/libcex/structcex_1_1_security_options.html)
+- `cex::sessionHandler` middleware that adds/retrieves session cookies [(API docs ↗)](https://patrickjane.github.io/libcex/session_8hpp.html) [(Options ↗)](https://patrickjane.github.io/libcex/structcex_1_1_session_options.html)
 - `cex::basicAuth` middleware that extracts HTTP basic auth information from the request [(API docs ↗)](https://patrickjane.github.io/libcex/basicauth_8hpp.html)
-- `cex::sessionHandler` middleware that adds/retrieves session cookies from/to requests/responses [(API docs ↗)](https://patrickjane.github.io/libcex/session_8hpp.html)
 
 ## Requests
 [cex::Request API docs ↗](https://patrickjane.github.io/libcex/classcex_1_1_request.html)    
