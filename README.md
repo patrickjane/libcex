@@ -168,6 +168,65 @@ Execution of middlewares stops once:
 - `cex::sessionHandler` middleware that adds/retrieves session cookies [(API docs ↗)](https://patrickjane.github.io/libcex/session_8hpp.html) [(Options ↗)](https://patrickjane.github.io/libcex/structcex_1_1_session_options.html)
 - `cex::basicAuth` middleware that extracts HTTP basic auth information from the request [(API docs ↗)](https://patrickjane.github.io/libcex/basicauth_8hpp.html)
 
+Example:
+
+```
+#include <cex.hpp>
+#include <cex/session.hpp>
+#include <cex/security.hpp>
+#include <cex/filesystem.hpp>
+#include <cex/basicauth.hpp>
+
+int main()
+{
+   cex::Server app;
+   
+   // use filesystem middleware
+   
+   std::shared_ptr<cex::FilesystemOptions> fsOpts(new cex::FilesystemOptions());
+   fsOpts.get()->rootPath= "/some/docs/folder";
+   
+   app.use("/docs", cex::filesystem(fsOpts));
+   
+   // use security middleware with some options set
+   
+   std::shared_ptr<cex::SecurityOptions> secOpts(new cex::SecurityOptions());
+   secOpts.get()->xFrameAllow= cex::xfFrom;
+   secOpts.get()->xFrameFrom= "my.domain.de";
+   secOpts.get()->stsMaxAge= 183400;
+   
+   secOpts.get()->ieNoOpen= cex::no;
+   secOpts.get()->noDNSPrefetch= cex::no;
+
+   app.use(cex::securityHeaders(secOpts));
+   
+   // use session middleware
+   
+   std::shared_ptr<cex::SessionOptions> sessionOpts(new cex::SessionOptions());
+   sessionOpts.get()->expires = 60*60*24*3;
+   sessionOpts.get()->maxAge= 144; 
+   sessionOpts.get()->domain= "my.domain.de"; 
+   sessionOpts.get()->path= "/somePath"; 
+   sessionOpts.get()->name= "sessionID"; 
+   sessionOpts.get()->secure= false; 
+   sessionOpts.get()->httpOnly=true; 
+   sessionOpts.get()->sameSiteLax= true; 
+   sessionOpts.get()->sameSiteStrict= true;
+
+   app.use(cex::sessionHandler(sessionOpts));
+   
+   // use basic auth middleware
+  
+   app.use(cex::basicAuth());
+   
+   // start server
+   
+   app.listen(true);
+   
+   return 0;
+}
+```
+
 ## Requests
 [cex::Request API docs ↗](https://patrickjane.github.io/libcex/classcex_1_1_request.html)    
 
