@@ -105,7 +105,7 @@ app.listen(true);
 Supplying `true` to the last parameter starts the listener/eventloop within the calling thread. If `false` is provided, a background thread will be spawned for the listener/eventloop, and the call to `listen` returns immediately.   
 
 
-**Note**: The background thread only servers for the eventloop. The actual request processing might use additional/more threads as given by the `threadCount` config option (default: 4).
+**Note**: The background thread is only used for the eventloop. The actual request processing might use additional/more threads as given by the `threadCount` config option (default: 4), independently from the listener thread.
 
 ## Middlewares
 [cex::Middleware API docs ↗](https://patrickjane.github.io/libcex/classcex_1_1_middleware.html)    
